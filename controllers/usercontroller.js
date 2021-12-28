@@ -11,6 +11,7 @@ const usercontroller = Router();
 usercontroller.post('/register', async (req, res) => {
     let { email, firstName, lastName, password, actName } = req.body;
     // console.log(req.body)
+    console.log('TESTING!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
     try {
         let signingUp = await User.create({
             email,
@@ -19,7 +20,7 @@ usercontroller.post('/register', async (req, res) => {
             password: bcrypt.hashSync(password, 12),
             actName,
         });
-        console.log('TESTING!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
+        
         // console.log(signingUp, password)
         if( signingUp && await bcrypt.compare(password, signingUp.password)) {
                 console.log(password)
