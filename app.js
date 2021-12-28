@@ -18,8 +18,8 @@ app.use('/venue', venues)
 
 
 db.authenticate()
-  .then(() => db.sync())
-  // .then(() => db.sync({force: true}))
+  // .then(() => db.sync())
+  .then(() => db.sync({force: true}))
   .then(() =>
     app.listen(process.env.PORT, () => {
       console.log(`[venyou-server]: app listening on ${process.env.PORT}`);
