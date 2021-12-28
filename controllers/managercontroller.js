@@ -10,7 +10,7 @@ const managercontroller = Router();
 
 managercontroller.post('/register', async (req, res) => {
     let { email, firstName, lastName, password } = req.body;
-    // console.log(req.body)
+
     try {
         let signingUp = await Manager.create({
             email,
@@ -20,7 +20,7 @@ managercontroller.post('/register', async (req, res) => {
         });
 
         if( signingUp && await bcrypt.compare(password, signingUp.password)) {
-            const token = jwt.sign({ id: signingUp.id }, process.env.JWT_SECRET);
+            const token = jwt.sign({ id: loggingIn.id }, process.env.JWT_SECRET, {expiresIn: 60 * 60 * 24});
                     res.status(200).json({
                         message: 'register success',
                         token
@@ -54,7 +54,7 @@ managercontroller.post('/login', async (req, res) => {
             }
         })
         if( loggingIn && await bcrypt.compare(password, loggingIn.password)) {
-            const token = jwt.sign({ id: loggingIn.id }, process.env.JWT_SECRET);
+            const token = jwt.sign({ id: loggingIn.id }, process.env.JWT_SECRET, {expiresIn: 60 * 60 * 24});
                     res.status(200).json({
                         message: 'login success',
                         token
