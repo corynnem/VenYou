@@ -10,11 +10,7 @@ const usercontroller = Router();
 
 usercontroller.post('/register', async (req, res) => {
     let { email, firstName, lastName, password, actName } = req.body;
-    console.log(req.body)
-    console.log('TESTING!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
-    let thing = bcrypt.hashSync(password, 10)
-    console.log(thing)
-    console.log('test again!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
+
     try {
         let signingUp = await User.create({
             email,
@@ -23,8 +19,7 @@ usercontroller.post('/register', async (req, res) => {
             password: bcrypt.hashSync(password, 12),
             actName,
         });
-        console.log(signingUp)
-        // console.log(signingUp, password)
+    
         if( signingUp && await bcrypt.compare(password, signingUp.password)) {
                 console.log(password)
             const token = jwt.sign({ id: signingUp.id }, process.env.JWT_SECRET, {expiresIn: 60 * 60 * 24});
@@ -33,8 +28,6 @@ usercontroller.post('/register', async (req, res) => {
                         message: 'register success',
                         token
                     })
-
-                    console.log('!!!!!!!why!!!!!!!!!!!!')
                     
         } else {
             res.status(401).json({
