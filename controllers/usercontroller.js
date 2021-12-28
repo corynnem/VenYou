@@ -19,6 +19,7 @@ usercontroller.post('/register', async (req, res) => {
             password: bcrypt.hashSync(password, 12),
             actName,
         });
+        console.log('TESTING!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
         // console.log(signingUp, password)
         if( signingUp && await bcrypt.compare(password, signingUp.password)) {
                 console.log(password)
