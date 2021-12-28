@@ -1,28 +1,38 @@
 const { DataTypes } = require('sequelize');
 const db = require('../db')
 
-const User = db.define('user', {
+const Venue = db.define('venue', {
+    name: {
+        type: DataTypes.STRING,
+        allowNull: false, 
+        unique: true
+    },
+    description: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
     email: {
         type: DataTypes.STRING(175),
         allowNull: false, 
         unique: true
     },
-    firstName: {
+    phoneNum: {
+        type: DataTypes.STRING(175),
+        allowNull: false, 
+        unique: true
+    },
+    location: {
         type: DataTypes.STRING,
         allowNull: false
     },
-    lastName: {
+    photo: {
         type: DataTypes.STRING,
         allowNull: false
     },
-    password: {
-        type: DataTypes.STRING,
-        allowNull: false
-    },
-    actName: {
+    website: {
         type: DataTypes.STRING,
         allowNull: false
     }
 });
 
-module.exports = User;
+module.exports = Venue;

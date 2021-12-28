@@ -1,11 +1,15 @@
 require('dotenv').config()
-
 const Express = require('express')
 const app = Express()
+const db = require('./db')
+const { cors, validate } = require('./middlewares')
+const { user, manager, venues } = require('./controllers')
 
 app.use("/static", Express.static("node_modules"));
+app.use(Express.json())
 
-
+app.use(cors)
+app.use('/user', user)
 
 
 
