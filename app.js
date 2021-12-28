@@ -10,6 +10,8 @@ app.use(Express.json())
 
 app.use(cors)
 app.use('/user', user)
+app.use('/manager', manager)
+app.use('/venue', venues)
 
 
 
