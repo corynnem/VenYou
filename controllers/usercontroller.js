@@ -27,6 +27,7 @@ usercontroller.post('/register', async (req, res) => {
                         message: 'register success',
                         token
                     })
+                    console.log(token)
         } else {
             res.status(401).json({
                 message: 'register failed'
