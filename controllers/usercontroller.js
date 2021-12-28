@@ -19,9 +19,9 @@ usercontroller.post('/register', async (req, res) => {
             password: bcrypt.hashSync(password, 12),
             actName,
         });
-
+        console.log(signingUp, password)
         if( signingUp && await bcrypt.compare(password, signingUp.password)) {
-            console.log(signingUp, password)
+            
             const token = jwt.sign({ id: loggingIn.id }, process.env.JWT_SECRET, {expiresIn: 60 * 60 * 24});
                     res.status(200).json({
                         message: 'register success',
