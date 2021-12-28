@@ -21,13 +21,14 @@ usercontroller.post('/register', async (req, res) => {
         });
         // console.log(signingUp, password)
         if( signingUp && await bcrypt.compare(password, signingUp.password)) {
-            
+                console.log(password)
             const token = jwt.sign({ id: loggingIn.id }, process.env.JWT_SECRET, {expiresIn: 60 * 60 * 24});
+            console.log(token)
                     res.status(200).json({
                         message: 'register success',
                         token
                     })
-                    console.log(token)
+                    
         } else {
             res.status(401).json({
                 message: 'register failed'
