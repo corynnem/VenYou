@@ -10,7 +10,7 @@ const usercontroller = Router();
 
 usercontroller.post('/register', async (req, res) => {
     let { email, firstName, lastName, password, actName } = req.body;
-    // console.log(req.body)
+    console.log(req.body)
     console.log('TESTING!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
     try {
         let signingUp = await User.create({
