@@ -1,11 +1,13 @@
 const { Router } = require("express");
-const { Venue, Task } = require("../models");
-
+const { Venue } = require("../models");
+const { validateUser } = require('../middlewares');
+const { toASCII } = require("punycode");
 
 let venuecontroller = Router();
 
 venuecontroller.post("/new", async (req, res) => {
   const { name, description, email, phoneNum, location, photo, website } = req.body;
+
   try {
     let newVenue = await Venue.create({
       name,
@@ -14,7 +16,8 @@ venuecontroller.post("/new", async (req, res) => {
       phoneNum,
       location,
       photo,
-      website
+      website,
+      managerId: req.user.id
     });
 
     res.json({
@@ -46,16 +49,38 @@ venuecontroller.get("/all", async (req, res) => {
 
 
 
+venuecontroller.get("/mine", async (req, res) => {
+    try {
+      let allVenues = await Venue.findAll({
+          where: {
+              managerId: req.user.id
+          }
+      });
+      res.json({
+        venues: allVenues,
+      });
+    } catch (e) {
+      res.status(500).json({
+        message: "failed get venues",
+      });
+    }
+  });
+  
+
+
+
  venuecontroller.put('/:id', async (req, res) => {
   const { name, description, email, phoneNum, location, photo, website } = req.body;
-     
+     console.log(req.body)
   try {
 
     const toUpdate = await Venue.findOne({
       where: {
         id: req.params.id,
+        managerId: req.user.id
       },
     });
+    console.log(toUpdate)
 
     if (toUpdate && name) {
       toUpdate.name = name; 
@@ -65,7 +90,6 @@ venuecontroller.get("/all", async (req, res) => {
       toUpdate.location = location;
       toUpdate.photo = photo;
       toUpdate.website = website;
-      toUpdate.managerId = req.user.id
       
       await toUpdate.save();
       

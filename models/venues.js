@@ -26,7 +26,7 @@ const Venue = db.define('venue', {
         allowNull: false
     },
     photo: {
-        type: DataTypes.STRING,
+        type: DataTypes.STRING(2000),
         allowNull: false
     },
     website: {

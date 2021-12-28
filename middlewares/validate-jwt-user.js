@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
-const { Manager } = require('../models');
+const { User } = require('../models');
 
-const validate = (req, res, next) => {
+const validateUser = (req, res, next) => {
   if (req.method === 'OPTIONS') {
     return next();
   } else if (req.headers.authorization && req.headers.authorization.includes('Bearer')) {
@@ -10,7 +10,7 @@ const validate = (req, res, next) => {
     console.log(payload)
   
     if (payload) {
-      Manager.findOne({
+      User.findOne({
         where: {
           id: payload.id
         }
@@ -31,4 +31,4 @@ const validate = (req, res, next) => {
   }
 }
 
-module.exports = validate;
+module.exports = validateUser;
