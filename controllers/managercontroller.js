@@ -20,7 +20,7 @@ managercontroller.post('/register', async (req, res) => {
         });
 
         if( signingUp && await bcrypt.compare(password, signingUp.password)) {
-            const token = jwt.sign({ id: loggingIn.id }, process.env.JWT_SECRET, {expiresIn: 60 * 60 * 24});
+            const token = jwt.sign({ id: signingUp.id }, process.env.JWT_SECRET, {expiresIn: 60 * 60 * 24});
                     res.status(200).json({
                         message: 'register success',
                         token
