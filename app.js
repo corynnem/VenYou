@@ -28,7 +28,7 @@ const options = {
         url: "http://localhost:8080",
       },
       {
-        url: "https://heroku.com",
+        url: "https://vy-backend.herokuapp.com/",
       },
     ]
   },
