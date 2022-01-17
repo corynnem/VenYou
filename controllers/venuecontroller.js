@@ -94,7 +94,7 @@ venuecontroller.get("/all", async (req, res) => {
  * /venue/mine:
  *   get:
  *     summary: Someone with a "Manager" token can get their own venues currently attached to their account
- *     tags: [Manager]
+ *     tags: [Venue]
  *     security: 
  *       - ManagerAuth: []
  *     responses:
@@ -129,7 +129,7 @@ venuecontroller.get("/mine", async (req, res) => {
  * /venue/1:
  *   put:
  *     summary: Someone with an "manager" token can delete teams by id
- *     tags: [Manager]
+ *     tags: [Venue]
  *     security: 
  *       - ManagerAuth: []
  *     responses:
@@ -189,7 +189,7 @@ venuecontroller.get("/mine", async (req, res) => {
  * /venue/1:
  *   delete:
  *     summary: Someone with an "manager" token can delete venues by id
- *     tags: [Manager]
+ *     tags: [Venue]
  *     security: 
  *       - ManagerAuth: []
  *     responses:
