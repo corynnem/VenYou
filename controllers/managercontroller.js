@@ -7,6 +7,28 @@ const { UniqueConstraintError } = require('sequelize/lib/errors')
 const managercontroller = Router();
 
 
+/**
+ * @swagger
+ * /manager/register:
+ *   post:
+ *     summary: Register a manager and returns a message of "register success" 
+ *     tags: [Manager]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/User'
+ *     responses:
+ *       200:
+ *         description: "register success"
+ *       401:
+ *         description: 'register failed'
+ *       409:
+ *         description: 'email already in use'
+ *       500:
+ *         description: 'failed to register manager'
+ */
 
 managercontroller.post('/register', async (req, res) => {
     let { email, firstName, lastName, password } = req.body;
@@ -37,13 +59,33 @@ managercontroller.post('/register', async (req, res) => {
             });
         } else {
             res.status(500).json({
-                message: 'failed to register user'
+                message: 'failed to register manager'
             })
         }
     }
 });
 
 
+/**
+ * @swagger
+ * /manager/login:
+ *   post:
+ *     summary: Log in a manager and returns a message of "login success" 
+ *     tags: [Manager]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/Manager'
+ *     responses:
+ *       200:
+ *         description: "login success"
+ *       401:
+ *         description: 'login failed'
+ *       500:
+ *         description: 'error logging in'
+ */
 
 managercontroller.post('/login', async (req, res) => {
     let { email, password } = req.body;

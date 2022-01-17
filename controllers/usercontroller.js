@@ -8,6 +8,30 @@ const usercontroller = Router();
 
 
 
+/**
+ * @swagger
+ * /user/register:
+ *   post:
+ *     summary: Register a user and returns a message of "register success" 
+ *     tags: [User]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/User'
+ *     responses:
+ *       200:
+ *         description: "register success"
+ *       401:
+ *         description: 'register failed'
+ *       409:
+ *         description: 'email already in use'
+ *       500:
+ *         description: 'failed to register user'
+ */
+
+
 usercontroller.post('/register', async (req, res) => {
     let { email, firstName, lastName, password, actName } = req.body;
 
@@ -48,6 +72,26 @@ usercontroller.post('/register', async (req, res) => {
 });
 
 
+/**
+ * @swagger
+ * /user/login:
+ *   post:
+ *     summary: Log in a user and returns a message of "login success" 
+ *     tags: [User]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/User'
+ *     responses:
+ *       200:
+ *         description: "login success"
+ *       401:
+ *         description: 'login failed'
+ *       500:
+ *         description: 'error logging in'
+ */
 
 usercontroller.post('/login', async (req, res) => {
     let { email, password } = req.body;
