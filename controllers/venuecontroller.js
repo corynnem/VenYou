@@ -93,7 +93,7 @@ venuecontroller.get("/all", async (req, res) => {
  * @swagger
  * /venue/mine:
  *   get:
- *     summary: Someone with a "Manager" token can get their own venues currently attached to their account
+ *     summary: Someone with a "manager" token can get their own venues currently attached to their account
  *     tags: [Venue]
  *     security: 
  *       - ManagerAuth: []
