@@ -1,7 +1,7 @@
 const { Router } = require("express");
 const { Venue } = require("../models");
-const { validateUser, validate } = require('../middlewares');
-const { toASCII } = require("punycode");
+const { validateUser  } = require('../middlewares');
+
 
 let venuecontroller = Router();
 
