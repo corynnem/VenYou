@@ -1,6 +1,6 @@
 const { Router } = require("express");
 const { Venue } = require("../models");
-const { validateUser } = require('../middlewares');
+const { validateUser, validate } = require('../middlewares');
 const { toASCII } = require("punycode");
 
 let venuecontroller = Router();
@@ -71,7 +71,7 @@ venuecontroller.post("/new", async (req, res) => {
  * 
  */ 
 
-venuecontroller.get("/all", async (req, res) => {
+venuecontroller.get("/all", validateUser, async (req, res) => {
   try {
     let allVenues = await Venue.findAll();
     res.json({
