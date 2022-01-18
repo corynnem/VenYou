@@ -59,10 +59,11 @@ venuecontroller.post("/new", async (req, res) => {
  * @swagger
  * /venue/all:
  *   get:
- *     summary: Someone with a "manager" token can get a list of all Venues
+ *     summary: Someone with a "manager" token or a "user" token can get a list of all Venues
  *     tags: [Venue]
  *     security: 
  *       - ManagerAuth: []
+ *       - UserAuth: []
  *     responses:
  *       200:
  *         description: Will return an array of Venue objects and a success message of 'venue created'
