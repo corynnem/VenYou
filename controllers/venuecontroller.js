@@ -129,7 +129,7 @@ venuecontroller.get("/mine", async (req, res) => {
  * @swagger
  * /venue/1:
  *   put:
- *     summary: Someone with an "manager" token can delete teams by id
+ *     summary: Someone with an "manager" token can update teams by id
  *     tags: [Venue]
  *     security: 
  *       - ManagerAuth: []
