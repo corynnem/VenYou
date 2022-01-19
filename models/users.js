@@ -13,6 +13,7 @@ const db = require('../db')
  *          - firstName
  *          - lastName
  *          - password
+ *          - actName
  *       properties:
  *         id:
  *           type: integer

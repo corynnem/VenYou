@@ -18,7 +18,7 @@ const managercontroller = Router();
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/User'
+ *             $ref: '#/components/schemas/Manager'
  *     responses:
  *       200:
  *         description: "register success"

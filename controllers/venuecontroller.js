@@ -13,7 +13,7 @@ let venuecontroller = Router();
  *     summary: Someone with a "manager" token can create a new venue
  *     tags: [Venue]
  *     security: 
- *       - VenueAuth: []
+ *       - ManagerAuth: []
  *     requestBody:
  *       required: true
  *       content:
@@ -22,9 +22,9 @@ let venuecontroller = Router();
  *             $ref: '#/components/schemas/Venue'
  *     responses:
  *       200:
- *         description: "user registered"
+ *         description: "venue created"
  *       500:
- *         description: 'failed to create item'
+ *         description: 'failed to create venue'
  */
 
 venuecontroller.post("/new", async (req, res) => {
@@ -137,7 +137,7 @@ venuecontroller.get("/mine", async (req, res) => {
  *       200:
  *         description: "updated venue info successfully"
  *       404: 
- *         description: "required fields missing, venue not found, or employer is unauthorized to edit"
+ *         description: "required fields missing, venue not found, or manager is unauthorized to edit"
  *       500:
  *          description: "failed to edit venue info"
  * 
